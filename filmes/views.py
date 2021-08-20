@@ -8,3 +8,7 @@ def home_page(request):
     return render(request,
     template_name='filmes/home_page.html', context ={'filmes':filmes}
     )
+
+def create_new_movie(request):
+
+    return render(request,'filmes/new_movie.html')

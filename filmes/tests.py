@@ -16,7 +16,13 @@ class TestQueriesFilme (TestCase):
             ,avaliation=3.1,date_of_creation=hora_date
             )
 class TestFilmePagesWorks(TestCase):
-    def test_home_page_works(self):
+    def test_If_home_page_works(self):
         url = '/home_page/'
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
+
+    def test_if_new_movie_page_works(self):
+        url = '/create_new_movie/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
+        
