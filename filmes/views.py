@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.views import View
+from filmes.models import Filme
 # Create your views here.
 
 def home_page(request):
-    return render(request,template_name='filmes/home_page.html')
+    filmes = Filme.objects.all()
+    return render(request,
+    template_name='filmes/home_page.html', context ={'filmes':filmes}
+    )
