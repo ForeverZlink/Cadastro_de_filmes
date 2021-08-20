@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from filmes.models import Filme
+from filmes.forms import FilmeForm
 from datetime import datetime
 # Create your tests here.
 class TestQueriesFilme (TestCase):
@@ -15,6 +16,7 @@ class TestQueriesFilme (TestCase):
             user=self.user,name='ola',description='zen'
             ,avaliation=3.1,date_of_creation=hora_date
             )
+    
 class TestFilmePagesWorks(TestCase):
     def test_If_home_page_works(self):
         url = '/home_page/'
