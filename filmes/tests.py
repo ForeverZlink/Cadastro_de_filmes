@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from filmes.models import Filme
 from datetime import datetime
 # Create your tests here.
-class TestQueries (TestCase):
+class TestQueriesFilme (TestCase):
     @classmethod
     def setUp(self):
         self.filme = Filme
@@ -15,4 +15,8 @@ class TestQueries (TestCase):
             user=self.user,name='ola',description='zen'
             ,avaliation=3.1,date_of_creation=hora_date
             )
-        
+class TestFilmePagesWorks(TestCase):
+    def test_home_page_works(self):
+        url = '/home_page/'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
