@@ -16,9 +16,11 @@ def create_new_movie(request):
 
     if request.method == 'POST':
         filme=FilmeForm(request.POST)
+        
         if filme.is_valid():
             filme.save()
-        return HttpResponseRedirect(reverse('filmes:home_page'))
+            return HttpResponseRedirect(reverse('filmes:home_page'))
         
+            
 
     return render(request,'filmes/new_movie.html')

@@ -5,12 +5,16 @@
 
 {% block content %}
 
-<form action="">
-
-
-
-
-
+<form method = 'POST' action="{% url 'filmes:new_movie' %}">
+    {% csrf_token %}
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name">
+    <label for="description">Descrição</label>
+    <input type="text" name="description" id="description">
+    <label for="avaliation">Nota</label>
+    <input type="number" name="avaliation" id="avaliation">
+    <input type="hidden" name="user" value = "{{user.pk}}">
+    <input type="submit" value="Enviar">
 
 
 </form>
