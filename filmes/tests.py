@@ -16,6 +16,14 @@ class TestQueriesFilme (TestCase):
             user=self.user,name='ola',description='zen'
             ,avaliation=3.1,date_of_creation=hora_date
             )
+    def test_create_new_film(self):
+        url='/create_new_movie/'
+        responser=self.client.post(url,{'user':self.user.pk,'name':'ola','description':'zen'
+            ,"avaliation":3.1}
+            )
+        print(Filme.objects.all())
+        print(responser)
+
     
 class TestFilmePagesWorks(TestCase):
     def test_If_home_page_works(self):
