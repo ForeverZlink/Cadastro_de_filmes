@@ -21,9 +21,9 @@ def create_new_movie(request):
             filme.save()
             return HttpResponseRedirect(reverse('filmes:home_page'))
         else:
-            if int(request.POST['avaliation']) >5:
-                return render(request,'filmes/new_movie.html',
-                context={'form_erro':'Não pode dar uma nota maior que 5'})
+            avaliation = int(request.POST['avaliation'])
+            if  avaliation>10 or avaliation <0:
+                pass
             
 
     return render(request,'filmes/new_movie.html')
