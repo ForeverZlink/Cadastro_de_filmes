@@ -4,15 +4,15 @@
 {% block title %}Adicionar Novo Filme{% endblock title %}
 
 {% block content %}
-
+<h3>{{form_errors}}</h3>
 <form method = 'POST' action="{% url 'filmes:new_movie' %}">
     {% csrf_token %}
     <label for="name">Nome</label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="name" id="name" required>
     <label for="description">Descrição</label>
-    <input type="text" name="description" id="description">
-    <label for="avaliation">Nota</label>
-    <input type="number" name="avaliation" id="avaliation" step ='0.1'>
+    <input type="text" name="description" id="description" required>
+    <label for="avaliation" >Nota</label>
+    <input type="number" name="avaliation" id="avaliation" step ='0.1' value ="0" required >
     <input type="hidden" name="user" value = "{{user.pk}}">
     <label for="visto">Já visto</label>
     <input type="checkbox" name="visto" id="visto" >

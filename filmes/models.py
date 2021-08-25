@@ -8,14 +8,15 @@ class Filme(models.Model):
     name = models.CharField(
         max_length=40, unique=True, blank=False, null=False
         )
-    description = models.TextField()
-    avaliation = models.FloatField()
+    description = models.TextField(default=None)
+    avaliation = models.FloatField(default=0,null=True)
     visto = models.BooleanField(default=False)
     date_of_creation = models.DateTimeField(auto_now_add=True)
     date_of_update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
+        
     
 
     

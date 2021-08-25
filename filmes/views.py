@@ -18,12 +18,16 @@ def create_new_movie(request):
         filme=FilmeForm(request.POST)
         
         if filme.is_valid():
-            filme.save()
-            return HttpResponseRedirect(reverse('filmes:home_page'))
-        else:
-            avaliation = int(request.POST['avaliation'])
+            avaliation= float(request.POST['avaliation'])
             if  avaliation>10 or avaliation <0:
-                pass
+                form_erros_avaliation = 'Digite um número entre 0 e 10'
+                return render(request,'filmes/new_movie.html'
+                    ,context={'form_errors':form_erros_avaliation})
+            else:
+                filme.save()
+                return HttpResponseRedirect(reverse('filmes:home_page'))
+        
             
+           
 
     return render(request,'filmes/new_movie.html')
