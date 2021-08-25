@@ -3,12 +3,23 @@
 
 {% block content %}
 <h1>tudo traquilo</h1>
+<div class="row mb-3">
+<div class="col-md-4 themed-grid-col"><h3>Nome do filme</h3></div>
+<div class="col-md-4 themed-grid-col"><h3>Nota</h3></div>
+<div class="col-md-4 themed-grid-col"><h3>Já visto</h3></div>
+
+</div>
 {% for filme in filmes %}
+
 <div class="row mb-3">
       <div class="col-md-4 themed-grid-col">{{filme.name}}</div>
       <div class="col-md-4 themed-grid-col">{{filme.avaliation}}</div>
       <div class="col-md-4 themed-grid-col">
-        <input type="checkbox" name="visto" value="{{filme.visto}}">
+        {% if filme.visto %}
+        <input type="checkbox" name="visto" checked>
+        {% else %}
+        <input type="checkbox" name="visto" >
+        {% endif %}
         
       </div>
     </div>
