@@ -5,5 +5,7 @@ class FilmeForm(ModelForm):
     class Meta:
         model = Filme
         fields = ['user','name',
-            'description','avaliation'
+            'description','avaliation',
+            'visto'
+
         ]

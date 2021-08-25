@@ -4,7 +4,15 @@
 {% block content %}
 <h1>tudo traquilo</h1>
 {% for filme in filmes %}
-<h1>{{filme.name}}</h1>
+<div class="row mb-3">
+      <div class="col-md-4 themed-grid-col">{{filme.name}}</div>
+      <div class="col-md-4 themed-grid-col">{{filme.avaliation}}</div>
+      <div class="col-md-4 themed-grid-col">
+        <input type="checkbox" name="visto" value="{{filme.visto}}">
+        
+      </div>
+    </div>
+
 
 {% endfor %}
 
