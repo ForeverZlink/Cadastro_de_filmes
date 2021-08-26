@@ -2,13 +2,16 @@
 {% block title %}Filmes{% endblock title %}
 
 {% block content %}
-<a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Home</a>
+<a href="{% url 'filmes:new_movie'  %}">Criar novo filme</a>
+<a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Sair da Sessão</a>
 <div class="row mb-3">
 <div class="col-md-4 themed-grid-col"><h3>Nome do filme</h3></div>
 <div class="col-md-4 themed-grid-col"><h3>Nota</h3></div>
 <div class="col-md-4 themed-grid-col"><h3>Já visto</h3></div>
 
 </div>
+
+
 {% for filme in filmes %}
 
 <div class="row mb-3">
