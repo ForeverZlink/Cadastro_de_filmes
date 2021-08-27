@@ -4,7 +4,8 @@
 {% block title %}Adicionar Novo Filme{% endblock title %}
 
 {% block content %}
-<h3>{{form_errors}}</h3>
+
+<h1>{{form_errors}}</h1>
 <form method = 'POST' action="{% url 'filmes:new_movie' %}">
     {% csrf_token %}
     <label for="name">Nome</label>
