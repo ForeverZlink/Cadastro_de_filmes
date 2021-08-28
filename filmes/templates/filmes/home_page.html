@@ -1,5 +1,12 @@
 {% extends 'filmes/index.html' %}
-{% block title %}Filmes{% endblock title %}
+{% load static %}
+{% block title %}
+
+<link rel="stylesheet" href="{% static 'filmes/bootstrap/css/dashboard.css' %}">
+
+Filmes
+
+{% endblock title %}
 
 {% block content %}
 
@@ -136,15 +143,5 @@
     </main>
   </div>
 </div>
-
-
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-
-
-
 
 {% endblock content %}
