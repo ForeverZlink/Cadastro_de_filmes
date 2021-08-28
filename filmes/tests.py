@@ -16,24 +16,39 @@ class TestQueriesFilme (TestCase):
             user=self.user,name='ola',description='zen'
             ,avaliation=3.1,date_of_creation=hora_date
             )
-    def test_create_new_film(self):
+    def test_create_new_film_in_page(self):
+        self.client.login(username= 'carlos',password='123')
         url='/create_new_movie/'
         responser=self.client.post(url,{'user':self.user.pk,'name':'ola','description':'zen'
             ,"avaliation":3.1}
             )
+        
+        responser=self.client.post(url,{'user':self.user.pk,'name':'ola','description':'zen'
+            ,"avaliation":3.1}
+            )
+        
         print(Filme.objects.all())
         print(responser)
+    
 
     
 class TestFilmePagesWorks(TestCase):
+    @classmethod
+    def setUp(self):
+        self.user = User.objects.create_user(username='carlos',password='123')
+
     def test_If_home_page_works(self):
+        self.client.login(username= 'carlos',password='123')
         url = '/home_page/'
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
 
     def test_if_new_movie_page_works(self):
+        self.client.login(username= 'carlos',password='123')
         url = '/create_new_movie/'
         response = self.client.get(url)
+        
         self.assertEqual(response.status_code,200)
+        
         
     

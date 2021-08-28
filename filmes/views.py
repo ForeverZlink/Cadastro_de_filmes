@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/account/login")
 def home_page(request):
-    filmes = Filme.objects.all()
+    filmes = reversed  (Filme.objects.all()) 
     return render(request,
     template_name='filmes/home_page.html', context ={'filmes':filmes}
     )
