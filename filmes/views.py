@@ -11,6 +11,8 @@ def home_page(request):
     return render(request,
     template_name='filmes/home_page.html', context ={'filmes':filmes}
     )
+
+    
 @login_required(login_url='/account/login')
 def create_new_movie(request):
     from filmes.forms import FilmeForm
