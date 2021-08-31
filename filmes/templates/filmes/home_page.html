@@ -118,28 +118,40 @@ Filmes
       </div>
 
       <h2>Filmes Cadastrados</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <div class="row mb-3">
-            <div class="col-md-4 themed-grid-col"><h4>Nome do Filme</h4></div>  
-            <div class="col-md-4 themed-grid-col"><h4>Nota</h4></div>
-            <div class="col-md-4 themed-grid-col"><h4>Já visto</h4></div>
-          </div>
-          {% for filme in  filmes %}
-            <div class="row mb-3">
-                <div class="col-md-4 themed-grid-col">{{filme.name}}</div>
-                <div class="col-md-4 themed-grid-col">{{filme.avaliation}}</div>
-                <div class="col-md-4 themed-grid-col">
-                  {% if filme.visto %}
-                    <input type="checkbox" name="visto"  checked>
-                  {% else %}
-                    <input type="checkbox" name="visto" >
-                  {% endif %}
-                </div>
-            </div>
-          {% endfor %}
+      <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              
+              <th scope="col">Nome do filme</th>
+              <th scope="col">nota</th>
+              <th scope="col">ja visto</th>
+              <th scope="col">editar filme</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for filme in  filmes %}
+              <tr>
+                  <td>{{filme.name}}</td>
+                  <td>{{filme.avaliation}}</td>
+                  <td>
+                    <div>
+                    {% if filme.visto %}
+                      <input type="checkbox" name="visto" checked>
+
+                    {% else %}
+                      <input type="checkbox" >
+                    {% endif %}
+                  
+                    </div>
+                  </td>
+                </tr>
+
+            {% endfor %}
+              
+              
+            </tbody>
         </table>
-      </div>
+      
     </main>
   </div>
 </div>
