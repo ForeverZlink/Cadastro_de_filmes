@@ -29,7 +29,19 @@ class TestQueriesFilme (TestCase):
         
         print(Filme.objects.all())
         print(responser)
-
+    def test_detail_film(self):
+        hora_date = datetime.now()
+        self.filme.objects.create(
+            user=self.user,name='ola',description='zen'
+            ,avaliation=3.1,date_of_creation=hora_date
+            )
+        from django.shortcuts import reverse
+        url = reverse('filmes:detail_film',args=(1,))
+        
+        a=self.client.get(url)
+        
+        print(a)
+        
     
     
 

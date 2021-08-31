@@ -1,9 +1,17 @@
 from django.shortcuts import render
-from django.views import View
+from django.views.generic import DetailView
 from filmes.models import Filme
 from django.shortcuts import reverse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+class FilmeDetail(DetailView):
+    model = Filme
+    template_name = 'filmes/detail.html'
+   
+
+
+
 
 @login_required(login_url="/account/login")
 def home_page(request):
