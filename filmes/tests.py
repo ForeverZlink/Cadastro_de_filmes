@@ -29,6 +29,8 @@ class TestQueriesFilme (TestCase):
         
         print(Filme.objects.all())
         print(responser)
+
+    def test_create_a_movie_that_already_exist()
     
 
     
