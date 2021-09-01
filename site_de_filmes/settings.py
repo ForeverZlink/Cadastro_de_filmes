@@ -122,6 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = "/var/www/thefilmes.com/static/"
+
 LOGIN_REDIRECT_URL = '/home_page/'
 
 LOGOUT_REDIRECT_URL = '/account/login/'
