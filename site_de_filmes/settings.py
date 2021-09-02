@@ -16,7 +16,11 @@ import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+<<<<<<< HEAD
 
+=======
+PROJECT_ROOT= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+>>>>>>> a42bdb76f47edeba72c692f327c5f5b347c71d9b
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -134,7 +138,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 LOGIN_REDIRECT_URL = '/home_page/'
