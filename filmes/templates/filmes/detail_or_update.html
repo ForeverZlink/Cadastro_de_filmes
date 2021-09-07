@@ -1,0 +1,33 @@
+{% extends 'filmes/index.html' %}
+
+{% block content %}
+
+
+<h1>{{form_errors}}</h1>
+
+<form method="post"  action="{% url 'filmes:detail_or_update_film' filme.pk%}" >
+    {% csrf_token %}
+    <input type="text" name="name" id="name" value ="{{filme.name}}">
+    <input type="text" name="description" id="description" value = "{{filme.description}}">
+    <input type="number" name="avaliation" id="avaliation" value = "{{filme.avaliation}}">
+    {% if filme.visto %} 
+    <input type="checkbox" name="visto" id="visto" checked>
+    {% else %}
+    <input type="checkbox" name="visto" id="visto">
+    {% endif %}
+    <input type="hidden" name="user" value = "{{user.pk}}">
+    <button type="submit">atualizar</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
