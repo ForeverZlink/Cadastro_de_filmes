@@ -9,6 +9,13 @@ from filmes.forms import FilmeForm
 # Create your views here.
 
 
+def delete_film(request,pk):
+    
+    filme=Filme.objects.get(pk=pk)
+    filme.delete()
+    return HttpResponseRedirect(reverse("filmes:home_page"))
+
+
 
 def film_detail_or_update(request,pk):
     filme=Filme.objects.get(pk=pk)

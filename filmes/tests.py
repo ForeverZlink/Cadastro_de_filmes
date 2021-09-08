@@ -1,4 +1,4 @@
-from django.http import request
+from django.http import request, response
 from django.test import TestCase
 from django.contrib.auth.models import User
 from filmes.models import Filme
@@ -12,12 +12,33 @@ class TestQueriesFilme (TestCase):
         self.hora_date = datetime.now()
         self.filme = Filme
         self.user = User.objects.create_user(username='carlos',password='123')
-
+  
     def test_criar_filme(self):
         self.filme.objects.create(
             user=self.user,name='ola',description='zen'
             ,avaliation=3.1,date_of_creation=self.hora_date
             )
+
+    def test_delete_filme(self):
+        
+        
+        self.filme.objects.create(
+            user=self.user,name='ola',description='zen'
+            ,avaliation=3.1,date_of_creation=self.hora_date
+            )
+        self.filme.objects.create(
+            user=self.user,name='teste',description='zen'
+            ,avaliation=3.1,date_of_creation=self.hora_date
+            )
+        print('Todos os objetos',self.filme.objects.all())
+        url=reverse('filmes:delete_filme',args=(1,))
+        responser=self.client.get(url)
+        print(responser.status_code)
+        self.assertEqual(responser.status_code,302)
+        print(self.filme.objects.all(),'kdjkd')
+
+
+        
     def test_create_new_film_in_page(self):
         self.client.login(username= 'carlos',password='123')
         url='/create_new_movie/'

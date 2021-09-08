@@ -4,7 +4,7 @@
 
 
 <h1>{{form_errors}}</h1>
-
+<button><a href="{% url 'filmes:delete_filme' filme.pk%}">Apgar</a></button>
 <form method="post"  action="{% url 'filmes:detail_or_update_film' filme.pk%}" >
     {% csrf_token %}
     <input type="text" name="name" id="name" value ="{{filme.name}}">
