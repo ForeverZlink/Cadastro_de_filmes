@@ -77,10 +77,19 @@ WSGI_APPLICATION = 'site_de_filmes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+##credênciais do database no heroku
+senha = '09518a505d9683cb2f9c8701881d9f541165849c40c4c46a29a5f34f6beab49d'
+host = 'ec2-18-215-44-132.compute-1.amazonaws.com'
+database_name = 'd7pd0qgmmc0ebo'
+database_user ='tpejvhjniaiwqc'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME', database_name),
+        'USER': os.environ.get('DB_USER', database_user),
+        'PASSWORD': os.environ.get('DB_PASS',senha ),
+        'HOST': host,
+        'PORT': '5432',
     }
 }
 
@@ -136,7 +145,7 @@ STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 #    os.path.join(BASE_DIR, 'static'),
 #)
 
-LOGIN_REDIRECT_URL = '/home_page/'
+LOGIN_REDIRECT_URL = '//'
 
 LOGOUT_REDIRECT_URL = '/account/login/'
 
