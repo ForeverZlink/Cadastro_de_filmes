@@ -2,6 +2,7 @@
 from pathlib import Path
 import os
 import django_heroku
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -66,21 +67,34 @@ WSGI_APPLICATION = 'site_de_filmes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-##credênciais do database no heroku
-senha = '09518a505d9683cb2f9c8701881d9f541165849c40c4c46a29a5f34f6beab49d'
-host = 'ec2-18-215-44-132.compute-1.amazonaws.com'
-database_name = 'd7pd0qgmmc0ebo'
-database_user ='tpejvhjniaiwqc'
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', database_name),
-        'USER': os.environ.get('DB_USER', database_user),
-        'PASSWORD': os.environ.get('DB_PASS',senha ),
-        'HOST': host,
-        'PORT': '5432',
+
+#se o usuário for testar a aplicação 
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR,'db.sqlite3')
+        }
     }
-}
+
+#usado quando for ultilizado na produção
+else:
+
+    ##credênciais do database no heroku
+    senha = '09518a505d9683cb2f9c8701881d9f541165849c40c4c46a29a5f34f6beab49d'
+    host = 'ec2-18-215-44-132.compute-1.amazonaws.com'
+    database_name = 'd7pd0qgmmc0ebo'
+    database_user ='tpejvhjniaiwqc'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('DB_NAME', database_name),
+            'USER': os.environ.get('DB_USER', database_user),
+            'PASSWORD': os.environ.get('DB_PASS',senha ),
+            'HOST': host,
+            'PORT': '5432',
+        }
+    }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -134,7 +148,7 @@ STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 #    os.path.join(BASE_DIR, 'static'),
 #)
 
-LOGIN_REDIRECT_URL = '//'
+LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/account/login/'
 
