@@ -6,17 +6,50 @@
 <h1>{{form_errors}}</h1>
 <button><a href="{% url 'filmes:delete_filme' filme.pk%}">Apgar</a></button>
 <form method="post"  action="{% url 'filmes:detail_or_update_film' filme.pk%}" >
-    {% csrf_token %}
-    <input type="text" name="name" id="name" value ="{{filme.name}}">
-    <input type="text" name="description" id="description" value = "{{filme.description}}">
-    <input type="number" name="avaliation" id="avaliation" value = "{{filme.avaliation}}">
-    {% if filme.visto %} 
-    <input type="checkbox" name="visto" id="visto" checked>
-    {% else %}
-    <input type="checkbox" name="visto" id="visto">
-    {% endif %}
+{% csrf_token %}
+  <div class="row mb-3">
+        <label for="inputtitle" class="col-sm-2 col-form-label">Nome do filme</label>
+        <div class="col-sm-10">
+        <input type="text" name ="name"  class="form-control" id="inputtitle" value = "{{filme.name}}">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="form-floating">
+            <textarea class="form-control" name= "description" placeholder="Deixe seu comentário" id="floatingTextarea2" style="height: 100px" >
+             {{filme.description}}
+            
+            </textarea>
+            <label for="floatingTextarea2">Review do filme</label>
+
+        </div>
+    </div>
+    <label for="Nota_filme">Nota do filme</label>
+    <input id='Nota_filme'  type="number" value = "{{filme.avaliation}}" name="avaliation" id="">
+    
+    </fieldset>
+
+    <div class="row mb-3">
+        <div class="col-sm-10 offset-sm-2">
+        <div class="form-check">
+        
+            <label class="form-check-label" for="gridCheck1"> já visto
+             {% if filme.visto %} 
+                <input class="form-check-input" type="checkbox" id="gridCheck1" name="visto" checked>
+                {% else %}
+                <input class="form-check-input" type="checkbox" id="gridCheck1" name="visto">
+                {% endif %}
+            
+            
+            </label>
+        </div>
+        </div>
+    </div>
+
     <input type="hidden" name="user" value = "{{user.pk}}">
-    <button type="submit">atualizar</button>
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+
+    
+    
 </form>
 
 
