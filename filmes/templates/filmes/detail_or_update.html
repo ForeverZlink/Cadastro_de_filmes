@@ -4,7 +4,33 @@
 
 
 <h1>{{form_errors}}</h1>
-<button><a href="{% url 'filmes:delete_filme' filme.pk%}">Apgar</a></button>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Apagar esse filme.
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Apagar filme?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      Você tem certeza que deseja apagar o filme selecionado?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não apagar</button>
+        <a class="btn btn-danger" href="{% url 'filmes:delete_filme'  filme.pk%}" role="button">Apagar</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
 <form method="post"  action="{% url 'filmes:detail_or_update_film' filme.pk%}" >
 {% csrf_token %}
   <div class="row mb-3">
