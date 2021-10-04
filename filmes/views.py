@@ -5,7 +5,7 @@ from django.views.generic import DetailView
 from filmes.models import Filme
 from django.shortcuts import reverse
 from django.contrib.auth.decorators import login_required
-from filmes.forms import FilmeForm, UserForm
+from filmes.forms import FilmeForm
 from django.contrib.auth.models import User
 
 # Create your views here.

@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'site_de_filmes.wsgi.application'
 
 
 #se o usuário for testar a aplicação 
-if 'test' in sys.argv:
+if 'test' in sys.argv or "runserver":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
