@@ -1,12 +1,29 @@
+from django.forms.forms import Form
 from django.http import request
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import DetailView
 from filmes.models import Filme
 from django.shortcuts import reverse
 from django.contrib.auth.decorators import login_required
-from filmes.forms import FilmeForm
+from filmes.forms import FilmeForm, UserForm
+from django.contrib.auth.models import User
 
 # Create your views here.
+
+def create_user(request):
+    if request.method == 'POST':
+        user = request.POST
+        
+        usuario = User.objects.create_user(username=user['username'],
+                 password=user['password'],email=user['email']
+                )
+        usuario.save()
+        return HttpResponseRedirect(reverse("login"))
+    
+    return  render (request, template_name="filmes/create_user.html")
+        
+        
+
 
 
 def delete_film(request,pk):

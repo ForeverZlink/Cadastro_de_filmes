@@ -37,10 +37,19 @@ class TestQueriesFilme (TestCase):
         self.assertEqual(responser.status_code,302)
         print(self.filme.objects.all(),'kdjkd')
 
-
+    def test_create_user(self):
         
-    def test_create_new_film_in_page(self):
         self.client.login(username= 'carlos',password='123')
+        url = '/create_user/'
+        response= self.client.post(url, {'username':'zelda',"password":"2222","email":'carloscunha080@gmail.com'})
+        print(response)
+        print(User.objects.all()[1].email)
+
+
+
+
+    def test_create_new_film_in_page(self):
+        
         url='/create_new_movie/'
         responser=self.client.post(url,{'user':self.user.pk,'name':'ola','description':'zen'
             ,"avaliation":3.1}

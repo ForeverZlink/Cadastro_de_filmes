@@ -1,0 +1,18 @@
+{% extends 'filmes/index.html' %}
+
+{% block content %}
+<form action="{% url 'filmes:criar_user' %}" method="post">
+{% csrf_token %}
+    <label for="user">Nome do usuário</label>
+    <input type="text" name="username" id="user" >
+    <label for="password">Senha</label>
+    <input type="password" name="password" id="password">
+    <label for="email">Seu email:</label>
+    <input type="email" name="email" id="email">
+    <button type="submit">Criar usuário</button>
+</form>
+
+
+
+
+{% endblock content %}
