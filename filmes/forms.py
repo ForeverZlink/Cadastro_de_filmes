@@ -1,5 +1,7 @@
+from django.db import models
 from django.forms import ModelForm
-from filmes.models import Filme
+from filmes.models import Filme,User
+
 
 class FilmeForm(ModelForm):
     class Meta:
