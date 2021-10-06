@@ -46,7 +46,38 @@ class TestQueriesFilme (TestCase):
         print(User.objects.all()[1].email)
 
 
-
+    def test_ordenar_filmes(self):
+        self.filme.objects.create(
+            user=self.user,name='ola',description='zen'
+            ,avaliation=3.1,date_of_creation=self.hora_date
+            )
+        self.filme.objects.create(
+            user=self.user,name='teste',description='zen'
+            ,avaliation=2.1,date_of_creation=self.hora_date
+            )
+        self.filme.objects.create(
+            user=self.user,name='menor',description='zen'
+            ,avaliation=1.1,date_of_creation=self.hora_date
+            )
+        self.filme.objects.create(
+            user=self.user,name='maior',description='zen'
+            ,avaliation=4.1,date_of_creation=self.hora_date
+            )
+        filmes_orded = list()
+        filmes = Filme.objects.all()
+        for cont, filme_atual in enumerate(filmes) :
+            if cont==0:
+                filmes_orded.append(filme_atual)
+            else:
+                if filme_atual.avaliation>=filmes_orded[-1].avaliation:
+                    filmes_orded.append(filme_atual)
+                else:
+                    for filme in filmes_orded:
+                        if filme_atual.avaliation<=filme.avaliation:
+                            index_filme = filmes_orded.index(filme)
+                            filmes_orded.insert(index_filme,filme_atual)
+                            break
+        print(f"Os filmes ordenados são {filmes_orded}")
 
     def test_create_new_film_in_page(self):
         
