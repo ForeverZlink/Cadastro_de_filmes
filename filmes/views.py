@@ -23,6 +23,26 @@ def create_user(request):
     return  render (request, template_name="filmes/create_user.html")
         
         
+def show_best_films(request,pk):
+    filmes_orded = list()
+    filmes = Filme.objects.filter(user__pk=pk)
+    for cont, filme_atual in enumerate(filmes) :
+        if cont==0:
+            filmes_orded.append(filme_atual)
+        else:
+            if filme_atual.avaliation>=filmes_orded[-1].avaliation:
+                filmes_orded.append(filme_atual)
+            else:
+                for filme in filmes_orded:
+                    if filme_atual.avaliation<=filme.avaliation:
+                        index_filme = filmes_orded.index(filme)
+                        filmes_orded.insert(index_filme,filme_atual)
+                        break
+
+    return render(request, template_name="filmes/home_page.html"
+    ,context={'filmes':reversed(filmes_orded)}
+    )
+    
 
 
 
@@ -65,7 +85,8 @@ def film_detail_or_update(request,pk):
 
 @login_required(login_url="/account/login")
 def home_page(request):
-    filmes = reversed  (Filme.objects.all()) 
+    id_user = request.user.pk
+    filmes = reversed  (Filme.objects.filter(pk=id_user)) 
     return render(request,
     template_name='filmes/home_page.html', context ={'filmes':filmes}
     )
