@@ -1,9 +1,12 @@
 from django.urls import path
-from filmes.views import home_page, create_new_movie,FilmeDetail
+from filmes.views import home_page, create_new_movie, film_detail_or_update,delete_film,create_user,show_best_films
 
 app_name='filmes'
 urlpatterns = [
-    path('home_page/',home_page, name='home_page'),
+    path('',home_page, name='home_page'),
+    path('show_bests_films/<int:pk>/',show_best_films, name='show_bests_films'),
     path('create_new_movie/',create_new_movie,name='new_movie'),
-    path('detail_movie/<int:pk>',FilmeDetail.as_view(),name= 'detail_film')
+    path('delete_movie/<int:pk>/',delete_film,name='delete_filme'),
+    path('detail_movie/<int:pk>/',film_detail_or_update,name= 'detail_or_update_film'),
+    path('create_user/',create_user,name="criar_user")
 ]

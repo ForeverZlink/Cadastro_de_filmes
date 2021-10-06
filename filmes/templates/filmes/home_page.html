@@ -11,6 +11,29 @@ Filmes
 {% block content %}
 
 
+<!--Deixar separado de tags especiais-->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Deslogar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      Você tem certeza que deseja sair do site?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não sair</button>
+        <a class="btn btn-danger" href="{% url 'logout'%}" role="button">Sair</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +42,13 @@ Filmes
   <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="{% url 'logout' %}">Sign out</a>
+         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Log out 
+      </button>
+
+
+
+      
     </div>
   </div>
 </header>
@@ -36,9 +65,9 @@ Filmes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'filmes:show_bests_films' user.pk%}">
               <span data-feather="file"></span>
-              Orders
+              Lista dos Melhores Filmes
             </a>
           </li>
           <li class="nav-item">
@@ -144,7 +173,7 @@ Filmes
                   
                     </div>
                   </td>
-                  <td><a href="{% url 'filmes:detail_film' filme.pk%}">Editar Filme</a></td>
+                  <td><a href="{% url 'filmes:detail_or_update_film' filme.pk%}">Editar Filme</a></td>
                 </tr>
 
             {% endfor %}
