@@ -85,8 +85,14 @@ def film_detail_or_update(request,pk):
 
 @login_required(login_url="/account/login")
 def home_page(request):
+
+    
     id_user = request.user.pk
-    filmes = reversed  (Filme.objects.filter(pk=id_user)) 
+    
+    filmes = reversed  (Filme.objects.filter(user__pk=id_user)) 
+
+    
+
     return render(request,
     template_name='filmes/home_page.html', context ={'filmes':filmes}
     )
