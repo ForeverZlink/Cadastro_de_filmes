@@ -7,6 +7,11 @@ from django.shortcuts import reverse
 from django.contrib.auth.decorators import login_required
 from filmes.forms import FilmeForm
 from django.contrib.auth.models import User
+import logging
+
+logging.basicConfig(filename="os_logs.log",level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 # Create your views here.
 
@@ -50,6 +55,7 @@ def delete_film(request,pk):
     
     filme=Filme.objects.get(pk=pk)
     filme.delete()
+    logger.info("Filme apagado")
     return HttpResponseRedirect(reverse("filmes:home_page"))
 
 
@@ -92,7 +98,7 @@ def home_page(request):
     filmes = reversed  (Filme.objects.filter(user__pk=id_user)) 
 
     
-
+    logger.debug('Acesso a home page')
     return render(request,
     template_name='filmes/home_page.html', context ={'filmes':filmes}
     )
