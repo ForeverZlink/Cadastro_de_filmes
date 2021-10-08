@@ -22,6 +22,8 @@ def create_user(request):
         usuario = User.objects.create_user(username=user['username'],
                  password=user['password'],email=user['email']
                 )
+       
+       
         usuario.save()
         return HttpResponseRedirect(reverse("login"))
     

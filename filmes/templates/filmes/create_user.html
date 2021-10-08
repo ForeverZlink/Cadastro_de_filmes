@@ -3,16 +3,104 @@
 {% block content %}
 <form action="{% url 'filmes:criar_user' %}" method="post">
 {% csrf_token %}
-    <label for="user">Nome do usuário</label>
-    <input type="text" name="username" id="user" >
-    <label for="password">Senha</label>
-    <input type="password" name="password" id="password">
-    <label for="email">Seu email:</label>
-    <input type="email" name="email" id="email">
-    <button type="submit">Criar usuário</button>
-</form>
 
+<div class="container">
+  <div class="py-5 text-center">
+    
+    <h2>Formulário de Criação de Usuário</h2>
+    
+  </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Dados cadastrais</h4>
+      <form class="needs-validation" novalidate="">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            
+            <div class="invalid-feedback">
+              
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="username">Nome para login</label>
+          <div class="input-group">
+            
+            <input type="text" class="form-control" id="username" name = "username" placeholder="Nickname" required="true">
+            <div class="invalid-feedback" style="width: 100%;">
+              Seu nickname é obrigatório.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="password">Senha</label>
+            <input type="password" class ="form-control" required="true" name="password" id="password" placeholder="Senha">
 
+        </div>
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required="true" placeholder="fulano@exemplo.com">
+          <div class="invalid-feedback">
+            Por favor, insira um endereço de e-mail válido, para futuras atualizações. 
+          </div>
+        </div>
+
+        
+       
+        <div class="row">
+            <div class="col-md-6 offset-md-5">
+            
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Criar usuário</button>
+            
+            </div>
+
+            
+            </div>
+        
+        
+      </form>
+    </div>
+  </div>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2017-2018 Nome da companhia</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacidade</a></li>
+      <li class="list-inline-item"><a href="#">Termos</a></li>
+      <li class="list-inline-item"><a href="#">Suporte</a></li>
+    </ul>
+  </footer>
+</div>
+<!-- Principal JavaScript do Bootstrap
+================================================== -->
+<!-- Foi colocado no final para a página carregar mais rápido -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<script>
+  // Exemplo de JavaScript para desativar o envio do formulário, se tiver algum campo inválido.
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Selecione todos os campos que nós queremos aplicar estilos Bootstrap de validação customizados.
+      var forms = document.getElementsByClassName('needs-validation');
+      // Faz um loop neles e previne envio
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
 
 
 {% endblock content %}
